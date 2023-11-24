@@ -1,16 +1,17 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book {
+  constructor(title, author, pages, read){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+  changeStatus() {
+    if (this.read === 'not read yet') return (this.read = 'have read');
+    if (this.read === 'have read') return (this.read = 'not read yet');
+  }
 }
-
-Book.prototype.changeStatus = function () {
-  if (this.read === 'not read yet') return (this.read = 'have read');
-  if (this.read === 'have read') return (this.read = 'not read yet');
-};
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
