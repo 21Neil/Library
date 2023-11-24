@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div>
+      <div>
+        <button id="add-book">Add a book</button>
+      </div>
+      <table id="book-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>Read</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <dialog id="add-book-dialog">
+      <form action="#">
+        <div>
+          <label for="book-title">Title</label>
+          <input type="text" name="book-title" id="book-title" />
+        </div>
+        <div>
+          <label for="book-author">Author</label>
+          <input type="text" name="book-author" id="book-author" />
+        </div>
+        <div>
+          <label for="book-pages">Pages</label>
+          <input type="text" name="book-pages" id="book-pages" />
+        </div>
+        <div>
+          <input type="radio" name="book-read" id="book-not-read-yet" value="not read yet" checked/>
+          <label for="book-not-read-yet">Not read yet</label>
+          <input type="radio" name="book-read" id="book-have-read" value="have read"/>
+          <label for="book-have-read">Have read</label>
+        </div>
+        <div>
+          <button class="btn" formmethod="dialog">Cancel</button>
+          <button class="btn confirm-btn">Confirm</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
