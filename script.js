@@ -1,7 +1,7 @@
 const myLibrary = [];
 
 class Book {
-  constructor(title, author, pages, read){
+  constructor(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -58,24 +58,32 @@ document.querySelector('#add-book').addEventListener('click', () => {
 });
 
 document.querySelector('#add-book-dialog .confirm-btn').addEventListener('click', e => {
-  e.preventDefault();
-  document.querySelector('#add-book-dialog').close();
-  function getReadStatus() {
-    const bookRead = document.getElementsByName('book-read')
-    for(let i = 0; i < bookRead.length; i++) {
-      if(bookRead[i].checked) return bookRead[i].value
+  const form = document.querySelector('#add-book-dialog form')
+  if (form.checkValidity()) {
+    e.preventDefault();
+    document.querySelector('#add-book-dialog').close();
+    function getReadStatus() {
+      const bookRead = document.getElementsByName('book-read')
+      for (let i = 0; i < bookRead.length; i++) {
+        if (bookRead[i].checked) return bookRead[i].value
+      }
+      return
     }
-    return
+    let newBook = new Book(
+      document.querySelector('#add-book-dialog #book-title').value,
+      document.querySelector('#add-book-dialog #book-author').value,
+      document.querySelector('#add-book-dialog #book-pages').value,
+      getReadStatus()
+    );
+    addBookToLibrary(newBook);
+    makeBookList();
   }
-  let newBook = new Book(
-    document.querySelector('#add-book-dialog #book-title').value,
-    document.querySelector('#add-book-dialog #book-author').value,
-    document.querySelector('#add-book-dialog #book-pages').value,
-    getReadStatus()
-  );
-  addBookToLibrary(newBook);
-  makeBookList();
 });
+
+document.querySelector('#add-book-dialog .cancel-btn').addEventListener('click', e => {
+  document.querySelector('#add-book-dialog').close();
+})
+
 
 document.querySelector('#add-book-dialog').addEventListener('close', () => {
   document.querySelector('#add-book-dialog form').reset();
